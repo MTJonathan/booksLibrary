@@ -3,11 +3,11 @@ import type { HeaderProps } from "../lib/type";
 const Header = ({ pagesFilter, setPagesFilter, maxPages, libros, genreFilter, setGenreFilter }: HeaderProps) => {
   return (
     <header>
-      <h1 className="text-4xl font-bold">Libros Disponibles</h1>
+      <h1 className="text-4xl font-[900]">Libros Disponibles</h1>
 
-      <form className="flex gap-30">
+      <form className="flex gap-30 my-6">
         <label className="flex flex-col">
-          <span>Filtrar por páginas</span>
+          <span className="text-xl font-bold">Filtrar por páginas</span>
           <span className="flex items-center gap-2">
             <input
               type="range"
@@ -22,7 +22,7 @@ const Header = ({ pagesFilter, setPagesFilter, maxPages, libros, genreFilter, se
 
         <label className="flex flex-col">
             <span>Filtrar por genero</span>
-            <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}>
+            <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)} className="bg-[#111111]">
                 <option value={""}>Todos</option>
                 {Array.from(new Set(libros.library.map((libro) => libro.book.genre))).map((genre) => (
                     <option key={genre} value={genre}>
