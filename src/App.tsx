@@ -12,6 +12,7 @@ function App() {
   const [booksOriginal] = useState<Books>(books); // nunca cambia
   const [genreFilter, setGenreFilter] = useState<string>("");
   const [search, setSearch] = useState<string>("");
+  const [authorFilter, setAuthorFilter] = useState<string>("");
 
   const [librosLeidos, setLibrosLeidos] = useState<Books>({ library: [] });
 
@@ -43,6 +44,8 @@ function App() {
           setGenreFilter={setGenreFilter}
           search={search}
           setSearch={setSearch}
+          authorFilter={authorFilter}
+          setAuthorFilter={setAuthorFilter}
         />
         <section className="p-4">
           <BooksList
@@ -50,6 +53,7 @@ function App() {
             pagesFilter={pagesFilter}
             genreFilter={genreFilter}
             setLibrosLeidos={setLibrosLeidos}
+            authorFilter={authorFilter}
           />
         </section>
       </div>

@@ -9,6 +9,8 @@ const Header = ({
   setGenreFilter,
   search,
   setSearch,
+  authorFilter,
+  setAuthorFilter,
 }: HeaderProps) => {
   return (
     <header>
@@ -49,8 +51,19 @@ const Header = ({
           </label>
           <label className="flex flex-col">
             <span>Filtrar por autor : </span>
-            <select>
+            <select
+              value={authorFilter}
+              onChange={(e) => setAuthorFilter(e.target.value)}
+              className="bg-[#111111]"
+            >
               <option value="">Todos</option>
+              {Array.from(
+                new Set(libros.library.map((libro) => libro.book.author.name))
+              ).map((author) => (
+                <option key={author} value={author}>
+                  {author}
+                </option>
+              ))}
             </select>
           </label>
         </div>

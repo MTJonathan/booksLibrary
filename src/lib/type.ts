@@ -25,6 +25,8 @@ export interface HeaderProps {
   setGenreFilter: (genreFilter: string) => void;
   search: string;
   setSearch: (search: string) => void;
+  authorFilter: string;
+  setAuthorFilter: (authorFilter: string) => void;
 }
 
 export interface BookListProps {
@@ -32,6 +34,7 @@ export interface BookListProps {
   pagesFilter: number;
   genreFilter: string;
   setLibrosLeidos: React.Dispatch<React.SetStateAction<Books>>;
+  authorFilter: string;
 }
 
 export interface BookReadProps {
