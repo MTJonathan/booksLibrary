@@ -23,6 +23,8 @@ export interface HeaderProps {
   libros: Books;
   genreFilter: string;
   setGenreFilter: (genreFilter: string) => void;
+  search: string;
+  setSearch: (search: string) => void;
 }
 
 export interface BookListProps {
@@ -35,4 +37,9 @@ export interface BookListProps {
 export interface BookReadProps {
   librosLeidos: Books;
   setLibrosLeidos: React.Dispatch<React.SetStateAction<Books>>;
+}
+
+export interface BookReadItemProps {
+  libro: Books["library"][number];
+  handleRemoveBook: (isbn: string) => void;
 }

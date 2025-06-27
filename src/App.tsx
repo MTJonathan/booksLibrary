@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Books } from "./lib/type";
 import "./App.css";
 import Header from "./components/Header";
@@ -7,16 +7,28 @@ import BooksList from "./components/BooksList";
 import BooksRead from "./components/BooksRead";
 
 function App() {
-  const [libros] = useState<Books>(books);
+  const [libros, setLibros] = useState<Books>(books);
   const [pagesFilter, setPagesFilter] = useState(0);
   const [genreFilter, setGenreFilter] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
 
-  const [librosLeidos, setLibrosLeidos] = useState<Books>({library: []});
+  const [librosLeidos, setLibrosLeidos] = useState<Books>({ library: [] });
 
   const maxPages = libros.library.reduce(
     (max, libro) => Math.max(max, libro.book.pages),
     0
   );
+
+  useEffect(() => {
+    if (search) {
+      const librosFiltrados = libros.library.filter((libro) =>
+        libro.book.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setLibros({ library: librosFiltrados });
+    } else {
+      setLibros(books);
+    }
+  }, [search]);
 
   return (
     <main className="grid grid-cols-[1.5fr_1fr] p-4">
@@ -28,6 +40,8 @@ function App() {
           libros={libros}
           genreFilter={genreFilter}
           setGenreFilter={setGenreFilter}
+          search={search}
+          setSearch={setSearch}
         />
         <section className="p-4">
           <BooksList
@@ -40,7 +54,10 @@ function App() {
       </div>
 
       <div>
-        <BooksRead librosLeidos={librosLeidos} setLibrosLeidos={setLibrosLeidos} />
+        <BooksRead
+          librosLeidos={librosLeidos}
+          setLibrosLeidos={setLibrosLeidos}
+        />
       </div>
     </main>
   );
