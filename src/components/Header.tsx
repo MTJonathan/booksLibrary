@@ -15,7 +15,7 @@ const Header = ({
       <h1 className="text-4xl font-[900]">Libros Disponibles</h1>
 
       <section>
-        <div className="flex gap-30 my-6">
+        <div className="flex justify-between my-6 mr-8">
           <label className="flex flex-col">
             <span className="text-xl font-bold">Filtrar por páginas</span>
             <span className="flex items-center gap-2">
@@ -31,7 +31,7 @@ const Header = ({
           </label>
 
           <label className="flex flex-col">
-            <span>Filtrar por genero</span>
+            <span>Filtrar por genero : </span>
             <select
               value={genreFilter}
               onChange={(e) => setGenreFilter(e.target.value)}
@@ -45,6 +45,12 @@ const Header = ({
                   {genre}
                 </option>
               ))}
+            </select>
+          </label>
+          <label className="flex flex-col">
+            <span>Filtrar por autor : </span>
+            <select>
+              <option value="">Todos</option>
             </select>
           </label>
         </div>

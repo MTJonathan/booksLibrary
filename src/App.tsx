@@ -9,6 +9,7 @@ import BooksRead from "./components/BooksRead";
 function App() {
   const [libros, setLibros] = useState<Books>(books);
   const [pagesFilter, setPagesFilter] = useState(0);
+  const [booksOriginal] = useState<Books>(books); // nunca cambia
   const [genreFilter, setGenreFilter] = useState<string>("");
   const [search, setSearch] = useState<string>("");
 
@@ -21,14 +22,14 @@ function App() {
 
   useEffect(() => {
     if (search) {
-      const librosFiltrados = libros.library.filter((libro) =>
+      const librosFiltrados = booksOriginal.library.filter((libro) =>
         libro.book.title.toLowerCase().includes(search.toLowerCase())
       );
       setLibros({ library: librosFiltrados });
     } else {
-      setLibros(books);
+      setLibros(booksOriginal);
     }
-  }, [search]);
+  }, [search, booksOriginal]);
 
   return (
     <main className="grid grid-cols-[1.5fr_1fr] p-4">
