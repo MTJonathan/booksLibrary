@@ -6,6 +6,7 @@ import BooksReadItem from "./BooksReadItem";
 
 const BooksRead = ({ librosLeidos, setLibrosLeidos }: BookReadProps) => {
   const handleRemoveBook = (isbn: string) => {
+    console.log(isbn);
     setLibrosLeidos((prevLibrosLeidos) => ({
       ...prevLibrosLeidos,
       library: prevLibrosLeidos.library.filter(
