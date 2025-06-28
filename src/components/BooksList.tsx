@@ -9,7 +9,7 @@ const BooksList = ({
   authorFilter,
 }: BookListProps) => {
 
-  
+
   const handleBookClick = (libro: Books["library"][number]) => {
     setLibrosLeidos((prevLibrosLeidos) => {
       const yaExiste = prevLibrosLeidos.library.some(
@@ -26,7 +26,7 @@ const BooksList = ({
   };
 
   return (
-    <div className="grid grid-cols-4 gap-5">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
       {libros.library.map(
         (libro) =>
           libro.book.pages >= pagesFilter &&

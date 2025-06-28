@@ -60,7 +60,7 @@ const BooksRead = ({ librosLeidos, setLibrosLeidos }: BookReadProps) => {
             items={librosLeidos.library.map((libro) => libro.book.ISBN)}
             strategy={rectSortingStrategy}
           >
-            <ul className="grid grid-cols-2 gap-5 py-8">
+            <ul className="grid sm:grid-cols-2 gap-5 py-8">
               {librosLeidos?.library.map((libro) => (
                 <BooksReadItem
                   key={libro.book.ISBN}

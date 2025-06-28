@@ -16,29 +16,30 @@ const BooksReadItem = ({ libro, handleRemoveBook }: BookReadItemProps) => {
   return (
     <li
       key={libro.book.ISBN}
-      className="relative flex justify-center"
+      className="flex justify-center"
       {...attributes}
       ref={setNodeRef}
       style={style}
     >
-      <div {...listeners} className="active:cursor-grab">
-        <picture>
+      <div className="active:cursor-grab">
+        <picture className="relative">
           <img
+            {...listeners}
             src={libro.book.cover}
             alt={libro.book.title}
             className="h-[13rem]"
           />
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemoveBook(libro.book.ISBN);
+            }}
+            className="absolute top-[-6px] left-[-6px] bg-white text-black rounded-full w-6 h-6 font-bold cursor-pointer"
+          >
+            X
+          </button>
         </picture>
       </div>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          handleRemoveBook(libro.book.ISBN);
-        }}
-        className="absolute right-5 top-[-6px] bg-white text-black rounded-full w-6 h-6 font-bold cursor-pointer"
-      >
-        X
-      </button>
     </li>
   );
 };

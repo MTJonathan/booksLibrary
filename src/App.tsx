@@ -14,12 +14,17 @@ function App() {
   const [search, setSearch] = useState<string>("");
   const [authorFilter, setAuthorFilter] = useState<string>("");
 
-  const [librosLeidos, setLibrosLeidos] = useState<Books>({ library: [] });
+  const [librosLeidos, setLibrosLeidos] = useState<Books>(JSON.parse(localStorage.getItem("librosLeidos") || "{}"));
 
   const maxPages = libros.library.reduce(
     (max, libro) => Math.max(max, libro.book.pages),
     0
   );
+
+  //Local Storage
+  useEffect(()=>{
+    localStorage.setItem("librosLeidos", JSON.stringify(librosLeidos));
+  },[librosLeidos])
 
   useEffect(() => {
     if (search) {
@@ -33,7 +38,7 @@ function App() {
   }, [search, booksOriginal]);
 
   return (
-    <main className="grid grid-cols-[1.5fr_1fr] p-4">
+    <main className="grid lg:grid-cols-[1.5fr_1fr] p-4">
       <div>
         <Header
           pagesFilter={pagesFilter}
